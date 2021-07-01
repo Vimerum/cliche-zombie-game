@@ -123,6 +123,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1022230871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1022230872}
+  m_Layer: 0
+  m_Name: GridBlockParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1022230872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022230871}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1973286049}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1687258581
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,13 +230,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: -0.022957042, y: 0.97606146, z: -0.17338957, w: -0.12927918}
+  m_LocalRotation: {x: 0.16569167, y: 0.31535298, z: -0.056011725, w: 0.93271726}
   m_LocalPosition: {x: 2.32, y: 1.203, z: 2.378}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 20.146, y: 195.09, z: 0.001}
+  m_LocalEulerAnglesHint: {x: 20.146, y: 37.361, z: 0.001}
 --- !u!114 &1687258586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,7 +293,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1756559548}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.1175957, y: -0.40517545, z: 9.239777}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1973286049}
@@ -297,7 +327,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1022230872}
   m_Father: {fileID: 1756559549}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -313,6 +344,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eff903348473699498ee0f4b8343c430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridSize: 100
+  terrainNoiseScale: 1
+  resourcesNoiseScale: 5
+  waterThreshold: 0.1
+  forestThreshold: 0.8
+  rockThreshold: 0.2
+  terrainSeed: 0
+  resourcesSeed: 0
+  gridBlockParent: {fileID: 1022230872}
+  gridBlocksPrefabs:
+  - type: 1
+    prefab: {fileID: 8745233523990052203, guid: 7a14e49ddc687e94c90e09b18234cf17, type: 3}
+  - type: 2
+    prefab: {fileID: 363980069782664870, guid: 499582ed9d0c53b41b2dd04bf99dedb6, type: 3}
+  - type: 3
+    prefab: {fileID: 5971552429886770973, guid: 6a2e90c6a25a58f40b152b21057fb91a, type: 3}
+  - type: 4
+    prefab: {fileID: 1493039630778783009, guid: bfc6a810d09877b48ab490fdce4cb9cf, type: 3}
 --- !u!1 &2138677391
 GameObject:
   m_ObjectHideFlags: 0
