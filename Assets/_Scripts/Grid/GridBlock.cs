@@ -26,4 +26,8 @@ public class GridBlock {
     public void SetGameObject (GameObject spawnedGO) {
         this.spawnedGO = spawnedGO;
     }
+
+    public GameObject GetGameObject () {
+        return spawnedGO;
+    }
 }

@@ -22,6 +22,17 @@ public class Grid  {
         grid[block.x, block.y] = block;
     }
 
+    public void SetType (int x, int y, GridBlockType type) {
+        if (x < 0 || x >= gridSize) {
+            return;
+        }
+        if (y < 0 || y >= gridSize) {
+            return;
+        }
+
+        grid[x, y].type = type;
+    }
+
     public GridBlock GetBlock (int x, int y) {
         if (x < 0 || x > gridSize) {
             return null;

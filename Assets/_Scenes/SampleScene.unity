@@ -345,8 +345,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridSize: 100
+  riverThickness: 1
+  riverDensity: 2
   terrainNoiseScale: 1
   resourcesNoiseScale: 5
+  terrainAmplitude: 2
   waterThreshold: 0.1
   forestThreshold: 0.8
   rockThreshold: 0.2
@@ -436,7 +439,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 3.267912e-32, z: 4.5904e-41, w: -1.677736e+11}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
