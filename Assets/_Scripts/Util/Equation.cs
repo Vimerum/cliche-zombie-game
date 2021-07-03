@@ -3,28 +3,27 @@ using System.Collections;
 
 public class Equation {
 
-    private float m;
-    private float b;
-    private float angle;
+    private readonly float m;
+    private readonly float b;
+    private readonly Vector2 normal;
 
     public Equation (Vector2 initial, Vector2 final) {
         m = (final.y - initial.y) / (final.x - initial.x);
         b = initial.y - (m * initial.x);
 
-        angle = Mathf.Atan(m);
+        normal = Vector2.Perpendicular(final - initial).normalized;
     }
 
     public float FindY (float x) {
         return m * x + b;
     }
 
-    public Vector2 FindYWithNoise (float x) {
-        float y = (Mathf.PerlinNoise(x, 0f) * 2) - 1;
+    public Vector2 FindYWithNoise (float x, float noiseStrength, float noiseFrequency) {
+        Vector2 pos = new Vector2(x, FindY(x));
 
-        float xL = x * Mathf.Cos(angle) - y * Mathf.Sin(angle);
-        float yL = x * Mathf.Sin(angle) + y * Mathf.Cos(angle) + b;
+        float noise = (Mathf.PerlinNoise(x / noiseFrequency, 0f) * 2) - 1;
+        pos += normal * noise * noiseStrength;
 
-        Debug.Log("(" + x + ", " + y + ") => (" + xL + ", " + yL + ")");
-        return new Vector2(xL, yL);
+        return pos;
     }
 }

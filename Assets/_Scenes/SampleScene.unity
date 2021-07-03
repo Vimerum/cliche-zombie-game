@@ -346,7 +346,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridSize: 100
   riverThickness: 1
-  riverDensity: 2
+  riverDensity: 0.6
+  riverNoiseStrength: 15
+  riverNoiseFrequency: 15
   terrainNoiseScale: 1
   resourcesNoiseScale: 5
   terrainAmplitude: 2

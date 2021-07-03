@@ -12,6 +12,8 @@ public class GridManager : MonoBehaviour
     public int gridSize = 10;
     public float riverThickness = 1f;
     public float riverDensity = 1f;
+    public float riverNoiseStrength = 1f;
+    public float riverNoiseFrequency = 1f;
     public float terrainNoiseScale = 1f;
     public float resourcesNoiseScale = 1f;
     public float terrainAmplitude = 2f;
@@ -110,10 +112,10 @@ public class GridManager : MonoBehaviour
 
         Equation eq = new Equation(waterInit, waterEnd);
 
-        float step = FindStep(eq, waterInit.x, waterEnd.x);
+        float step = FindStep(eq, waterInit, waterEnd);
 
         for (float x = waterInit.x; x <= waterEnd.x; x += step) {
-            Vector2 pos = eq.FindYWithNoise(x);
+            Vector2 pos = eq.FindYWithNoise(x, riverNoiseStrength, riverNoiseFrequency);
             Collider[] hits = Physics.OverlapSphere(new Vector3(pos.x, 0f, pos.y), riverThickness);
             
 
@@ -219,19 +221,11 @@ public class GridManager : MonoBehaviour
         return null;
     }
 
-    public float FindStep (Equation eq, float initX, float endX) {
-        Vector2 init = new Vector2(initX, eq.FindY(initX));
-        Vector2 end = new Vector2(endX, eq.FindY(endX));
-        Vector2 midPoint = Vector2.Lerp(init, end, 0.5f);
+    public float FindStep (Equation eq, Vector2 init, Vector2 end) {
+        Vector2 dir = (end - init).normalized;
 
-        float dist = Vector2.Distance(init, end);
+        Vector2 step = init + (dir * riverDensity);
 
-        if (dist > riverDensity + 0.5f) {
-            return FindStep(eq, initX, midPoint.x);
-        } else if (dist < riverDensity - 0.5f) {
-            return FindStep(eq, initX, (end + midPoint).x);
-        } else {
-            return (endX - initX);
-        }
+        return (step.x - init.x);
     }
 }
