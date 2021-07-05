@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4876656663183857971}
   - component: {fileID: 1355235241627681632}
   - component: {fileID: 3864128033138700415}
-  - component: {fileID: 8785480991735809076}
+  - component: {fileID: 7328287564908511294}
   m_Layer: 0
   m_Name: Grid Block - Rock
   m_TagString: Untagged
@@ -82,7 +82,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8785480991735809076
+--- !u!65 &7328287564908511294
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

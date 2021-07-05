@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1835219752661994372}
   - component: {fileID: 3440104317568038257}
   - component: {fileID: 2871736539734406334}
-  - component: {fileID: 3583307227746830347}
+  - component: {fileID: -4937300573142901674}
   m_Layer: 0
   m_Name: Grid Block - Water
   m_TagString: Untagged
@@ -82,7 +82,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3583307227746830347
+--- !u!65 &-4937300573142901674
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

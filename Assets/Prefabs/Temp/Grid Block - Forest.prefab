@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7729345583572966298}
   - component: {fileID: 1465875902509076141}
   - component: {fileID: 3450705314223457630}
-  - component: {fileID: 8401559558959219583}
+  - component: {fileID: -2835408519166375160}
   m_Layer: 0
   m_Name: Grid Block - Forest
   m_TagString: Untagged
@@ -82,7 +82,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8401559558959219583
+--- !u!65 &-2835408519166375160
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
