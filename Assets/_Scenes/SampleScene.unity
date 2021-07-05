@@ -350,10 +350,10 @@ MonoBehaviour:
   riverNoiseStrength: 15
   riverNoiseFrequency: 15
   terrainNoiseScale: 1
-  resourcesNoiseScale: 5
-  terrainAmplitude: 2
+  resourcesNoiseScale: 15
+  terrainAmplitude: 5
   waterThreshold: 0.1
-  forestThreshold: 0.8
+  forestThreshold: 0.6
   rockThreshold: 0.2
   terrainSeed: 0
   resourcesSeed: 0

@@ -29,6 +29,7 @@ public class GridManager : MonoBehaviour
 
     private Grid grid;
     private Vector2[] borders;
+    private Coroutine resetCO = null;
 
     private void Awake() {
         if (instance != null) {
@@ -53,13 +54,22 @@ public class GridManager : MonoBehaviour
             resourcesSeed = UnityEngine.Random.Range(-1000f, 1000f);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            foreach (Transform child in gridBlockParent) {
-                Destroy(child.gameObject);
-            }
-
-            CreateGrid();
+        if (Input.GetKeyDown(KeyCode.Space) && resetCO == null) {
+            resetCO = StartCoroutine(ResetMap());
         }
+    }
+
+    private IEnumerator ResetMap () {
+        foreach (Transform child in gridBlockParent) {
+            Destroy(child.gameObject);
+        }
+        Destroy(gridBlockParent.GetComponent<Collider>());
+
+        yield return new WaitForEndOfFrame();
+
+        CreateGrid();
+
+        resetCO = null;
     }
 
     private void CreateGrid () {
@@ -138,13 +148,12 @@ public class GridManager : MonoBehaviour
                 if (currBlock.type == GridBlockType.Grass) {
                     float resourcesNoise = Mathf.PerlinNoise((xF * resourcesNoiseScale) + resourcesSeed, (yF * resourcesNoiseScale) + resourcesSeed);
                     if (resourcesNoise > forestThreshold) {
-                        currBlock.type = GridBlockType.Forest;
+                        ChangeGridBlockType(currBlock, GridBlockType.Forest);
                     } else if (resourcesNoise < rockThreshold) {
-                        currBlock.type = GridBlockType.Rock;
+                        ChangeGridBlockType(currBlock, GridBlockType.Rock);
                     }
                 }
 
-                ChangeGridBlockType(currBlock);
             }
         }
     }
