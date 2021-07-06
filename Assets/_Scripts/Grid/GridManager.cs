@@ -27,7 +27,8 @@ public class GridManager : MonoBehaviour
     [Header("Prefabs")]
     public List<GridBlockTypePrefab> gridBlocksPrefabs;
 
-    private Grid grid;
+    [HideInInspector]
+    public Grid grid;
     private Vector2[] borders;
     private Coroutine resetCO = null;
 
