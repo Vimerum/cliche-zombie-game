@@ -50,7 +50,6 @@ public class FlowField {
 
     private int GetCost (Vector2Int pos) {
         GridBlock block = GridManager.instance.grid.GetBlock(pos.x, pos.y);
-
         return (int)block.type;
     }
 
@@ -83,7 +82,6 @@ public class FlowField {
         if (pos.x < 0 || pos.x >= gridSize || pos.y < 0 || pos.y >= gridSize) {
             return int.MaxValue;
         }
-
         return integrationField[pos.x, pos.y];
     }
 
@@ -127,14 +125,15 @@ public class FlowField {
     }
 
     public void Generate (Vector2 target) {
-        Debug.Log(target);
         CalculateIntegrationField(Vector2Int.FloorToInt(target));
         CalculateFlowField();
+    }
+    public Vector2 GetTargetDirection(Vector3 pos) {
+        return GetTargetDirection(new Vector2(pos.x,pos.z));
     }
 
     public Vector2 GetTargetDirection (Vector2 pos) {
         Vector2Int posInt = Vector2Int.FloorToInt(pos);
-
         return flowField[posInt.x, posInt.y];
     }
 
