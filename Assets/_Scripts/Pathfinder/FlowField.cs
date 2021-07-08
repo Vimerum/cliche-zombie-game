@@ -125,7 +125,7 @@ public class FlowField {
     }
 
     public void Generate (Vector2 target) {
-        CalculateIntegrationField(Vector2Int.FloorToInt(target));
+        CalculateIntegrationField(target.TruncateToInt());
         CalculateFlowField();
     }
     public Vector2 GetTargetDirection(Vector3 pos) {
@@ -133,7 +133,7 @@ public class FlowField {
     }
 
     public Vector2 GetTargetDirection (Vector2 pos) {
-        Vector2Int posInt = Vector2Int.FloorToInt(pos);
+        Vector2Int posInt = Vector2Int.RoundToInt(pos);
         return flowField[posInt.x, posInt.y];
     }
 

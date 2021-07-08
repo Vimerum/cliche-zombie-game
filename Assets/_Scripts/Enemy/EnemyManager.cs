@@ -6,8 +6,10 @@ public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager instance;
 
+    public int numZombie;
+    public GameObject prefab;
     private FlowField flowField;
-
+    
     private void Awake() {
         if (instance != null)
         {
@@ -18,6 +20,10 @@ public class EnemyManager : MonoBehaviour
     }
 
     void Start() {
+        for(int i = 0; i < numZombie; i++) {
+            int posX = UnityEngine.Random.Range(0, GridManager.instance.gridSize);
+            Instantiate(prefab, new Vector3(posX, 0, 0),Quaternion.identity, transform);
+        }
         flowField = new FlowField(GridManager.instance.gridSize);
         flowField.Generate(new Vector2(50,50));
     }
