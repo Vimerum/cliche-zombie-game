@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Created based on Leif Erkenbrach's post, available at: https://leifnode.com/2013/12/flow-field-pathfinding/ (accessed on 08/July/2021)
+ **/
+
 public class FlowField {
     private const int INITIAL_VALUE = int.MaxValue;
 
