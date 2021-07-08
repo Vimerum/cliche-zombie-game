@@ -546,11 +546,11 @@ MonoBehaviour:
   gridBlocksPrefabs:
   - type: 1
     prefab: {fileID: 8745233523990052203, guid: 7a14e49ddc687e94c90e09b18234cf17, type: 3}
-  - type: 2
+  - type: 10
     prefab: {fileID: 363980069782664870, guid: 499582ed9d0c53b41b2dd04bf99dedb6, type: 3}
-  - type: 3
+  - type: 6
     prefab: {fileID: 5971552429886770973, guid: 6a2e90c6a25a58f40b152b21057fb91a, type: 3}
-  - type: 4
+  - type: 255
     prefab: {fileID: 1493039630778783009, guid: bfc6a810d09877b48ab490fdce4cb9cf, type: 3}
 --- !u!1 &2138677391
 GameObject:

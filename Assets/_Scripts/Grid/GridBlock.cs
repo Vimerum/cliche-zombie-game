@@ -4,9 +4,9 @@ using System.Collections;
 public enum GridBlockType {
     None = 0,
     Grass = 1,
-    Water = 2,
-    Forest = 3,
-    Rock = 4,
+    Forest = 6,
+    Water = 10,
+    Rock = 255,
 }
 
 public class GridBlock {
