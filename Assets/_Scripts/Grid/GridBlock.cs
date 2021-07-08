@@ -4,7 +4,7 @@ using System.Collections;
 public enum GridBlockType {
     None = 0,
     Grass = 1,
-    Forest = 5,
+    Forest = 6,
     Water = 10,
     Rock = 255,
 }
