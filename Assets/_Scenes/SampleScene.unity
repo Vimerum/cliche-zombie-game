@@ -580,18 +580,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridSize: 100
-  riverThickness: 1
-  riverDensity: 0.6
-  riverNoiseStrength: 15
-  riverNoiseFrequency: 15
-  terrainNoiseScale: 1
-  resourcesNoiseScale: 15
-  terrainAmplitude: 5
-  waterThreshold: 0.1
-  forestThreshold: 0.6
-  rockThreshold: 0.2
-  terrainSeed: 0
-  resourcesSeed: 0
+  river:
+    seed: 0
+    thickness: 2
+    density: 0.6
+    strength: 15
+    frequency: 15
+  forest:
+    seed: 0
+    scale: 12
+    threshold: 0.5
+  rock:
+    seed: 0
+    scale: 15
+    threshold: 0.7
   gridBlockParent: {fileID: 1022230872}
   gridBlocksPrefabs:
   - type: 1

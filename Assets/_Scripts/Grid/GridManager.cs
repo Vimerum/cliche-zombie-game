@@ -16,19 +16,10 @@ public class GridManager : MonoBehaviour
     }
 
     [Header("Settings")]
-    public int gridSize = 10;
-    public float riverThickness = 1f;
-    public float riverDensity = 1f;
-    public float riverNoiseStrength = 1f;
-    public float riverNoiseFrequency = 1f;
-    public float terrainNoiseScale = 1f;
-    public float resourcesNoiseScale = 1f;
-    public float terrainAmplitude = 2f;
-    public float waterThreshold = 0.2f;
-    public float forestThreshold = 0.8f;
-    public float rockThreshold = 0.2f;
-    public float terrainSeed;
-    public float resourcesSeed;
+    public int gridSize = 100;
+    public Terrain.RiverSettings river;
+    public Terrain.ResourceSettings forest;
+    public Terrain.ResourceSettings rock;
     [Header("References")]
     public Transform gridBlockParent;
     [Header("Prefabs")]
@@ -48,20 +39,14 @@ public class GridManager : MonoBehaviour
 
         borders = new Vector2[]{ new Vector2(gridSize / 2, gridSize - 1), new Vector2(gridSize / 2, 0), new Vector2(0, gridSize / 2), new Vector2(gridSize - 1, gridSize / 2)};
 
-        terrainSeed = UnityEngine.Random.Range(-1000f, 1000f);
-        resourcesSeed = UnityEngine.Random.Range(-1000f, 1000f);
+        river.GenerateSeed();
+        forest.GenerateSeed();
+        rock.GenerateSeed();
 
         CreateGrid();
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.T)) {
-            terrainSeed = UnityEngine.Random.Range(-1000f, 1000f);
-        }
-        if (Input.GetKeyDown(KeyCode.G)) {
-            resourcesSeed = UnityEngine.Random.Range(-1000f, 1000f);
-        }
-
         if (Input.GetKeyDown(KeyCode.Space) && resetCO == null) {
             resetCO = StartCoroutine(ResetMap());
         }
@@ -130,8 +115,8 @@ public class GridManager : MonoBehaviour
         float step = FindStep(eq, waterInit, waterEnd);
 
         for (float x = waterInit.x; x <= waterEnd.x; x += step) {
-            Vector2 pos = eq.FindYWithNoise(x, riverNoiseStrength, riverNoiseFrequency);
-            Collider[] hits = Physics.OverlapSphere(new Vector3(pos.x, 0f, pos.y), riverThickness);
+            Vector2 pos = eq.FindYWithNoise(x, river);
+            Collider[] hits = Physics.OverlapSphere(new Vector3(pos.x, 0f, pos.y), river.thickness);
 
             foreach(Collider block in hits) {
                 GridBlockPosition blockPos = block.gameObject.GetComponent<GridBlockPosition>();
@@ -150,11 +135,10 @@ public class GridManager : MonoBehaviour
 
                 // Resources generation
                 if (currBlock.type == GridBlockType.Grass) {
-                    float resourcesNoise = Mathf.PerlinNoise((xF * resourcesNoiseScale) + resourcesSeed, (yF * resourcesNoiseScale) + resourcesSeed);
-                    if (resourcesNoise > forestThreshold) {
-                        ChangeGridBlockType(currBlock, GridBlockType.Forest);
-                    } else if (resourcesNoise < rockThreshold) {
+                    if (rock.IsNoiseGreaterThanThreshold(xF, yF)) {
                         ChangeGridBlockType(currBlock, GridBlockType.Rock);
+                    } else if (forest.IsNoiseGreaterThanThreshold(xF, yF)) {
+                        ChangeGridBlockType(currBlock, GridBlockType.Forest);
                     }
                 }
             }
@@ -231,7 +215,7 @@ public class GridManager : MonoBehaviour
 
     public float FindStep (Equation eq, Vector2 init, Vector2 end) {
         Vector2 dir = (end - init).normalized;
-        Vector2 step = init + (dir * riverDensity);
+        Vector2 step = init + (dir * river.density);
         return (step.x - init.x);
     }
 }
