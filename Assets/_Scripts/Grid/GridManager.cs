@@ -8,6 +8,13 @@ public class GridManager : MonoBehaviour
 {
     public static GridManager instance;
 
+    public enum Direction {
+        North,
+        East,
+        West,
+        South
+    }
+
     [Header("Settings")]
     public int gridSize = 10;
     public float riverThickness = 1f;

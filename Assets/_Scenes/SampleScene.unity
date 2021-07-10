@@ -384,7 +384,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cc9327ed0d4ad41a7dee17194d8792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numZombie: 50
+  numZombie: 100
+  spawnDelay: 0.3
   prefab: {fileID: 4663592966954800218, guid: 8b8ef88bf0c611d4aa1ede36b2ae2b55, type: 3}
 --- !u!1 &1687258581
 GameObject:
