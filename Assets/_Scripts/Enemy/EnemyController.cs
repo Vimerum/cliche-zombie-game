@@ -30,4 +30,13 @@ public class EnemyController : MonoBehaviour
         Vector2 newPos = EnemyManager.instance.GetTargetDirection(transform.position);
         target = new Vector3(newPos.x, 0, newPos.y) + transform.position;
     }
+
+    private void OnCollisionEnter(Collision collision) {
+        if(collision.gameObject.tag == "Bullet") {
+            Destroy(collision.gameObject);
+            //TODO
+            //definir dano e hit effect
+            Debug.Log("Acertou mizeravi");
+        }
+    }
 }
