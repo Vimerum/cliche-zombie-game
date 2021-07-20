@@ -168,6 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovSpeed: 6
+  bulletTimeOut: 0.2
+  prefab: {fileID: 8027897483003514377, guid: de22514c7dd09e0418564dc3936402b2, type: 3}
 --- !u!1 &1022230871
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,7 +680,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 3.267912e-32, z: 4.5904e-41, w: -1.677736e+11}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 3.1e-44, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

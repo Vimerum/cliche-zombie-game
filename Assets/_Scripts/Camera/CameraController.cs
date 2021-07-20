@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour
 
     private void Update(){
         Zoom();
-        MoveOnClick();
+        //MoveOnClick();
     }
 
     private void LateUpdate(){
@@ -40,7 +40,7 @@ public class CameraController : MonoBehaviour
         cam.localPosition += cam.forward * scrool * scroolSpeed;
     }
 
-    private void MoveOnClick(){
+    /*private void MoveOnClick(){
         if (Input.GetMouseButtonDown(0))
         {
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 100))
@@ -48,5 +48,5 @@ public class CameraController : MonoBehaviour
                 playerController.SetTarget(hit.point);
             }
         }
-    }
+    }*/
 }
