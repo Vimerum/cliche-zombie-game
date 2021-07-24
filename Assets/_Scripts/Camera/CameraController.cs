@@ -9,23 +9,22 @@ public class CameraController : MonoBehaviour
     public float zoomYMin = 7f;
     public float zoomYMax = 14f;
     [Header("References")]
-    public Transform player;
+    public Transform target;
 
     private Transform cam;
-    private PlayerController playerController;
 
     private void Start(){
         cam = transform.GetChild(0);
-        playerController = player.GetComponent<PlayerController>();
     }
 
     private void Update(){
         Zoom();
-        //MoveOnClick();
     }
 
     private void LateUpdate(){
-        transform.position = player.position;
+        if (target != null) {
+            transform.position = target.position;
+        }
     }
 
     private void Zoom () {
@@ -39,14 +38,4 @@ public class CameraController : MonoBehaviour
 
         cam.localPosition += cam.forward * scrool * scroolSpeed;
     }
-
-    /*private void MoveOnClick(){
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 100))
-            {
-                playerController.SetTarget(hit.point);
-            }
-        }
-    }*/
 }

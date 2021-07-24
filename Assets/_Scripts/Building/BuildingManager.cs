@@ -154,4 +154,8 @@ public class BuildingManager : MonoBehaviour {
     public bool HasMainBase () {
         return mainBaseBehaviour != null;
     }
+
+    public Transform GetMainBaseTransform () {
+        return mainBaseBehaviour.transform;
+    }
 }

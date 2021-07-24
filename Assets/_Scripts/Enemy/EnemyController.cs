@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float MovSpeed;
+    public float speed;
+    public float damageCooldown;
+    public float damage;
+
+    private float damageTimeout;
     private Vector3 target;
 
     void Start() {
+        damageTimeout = -1f;
         GetNewTarget();
     }
 
     void Update() {
+        damageTimeout -= Time.deltaTime;
         Move();
     }
 
@@ -23,7 +29,7 @@ public class EnemyController : MonoBehaviour
             GetNewTarget();
         }
         transform.LookAt(target);
-        transform.position += transform.forward * MovSpeed * Time.deltaTime;
+        transform.position += transform.forward * speed * Time.deltaTime;
     }
 
     public void GetNewTarget() {
@@ -31,12 +37,12 @@ public class EnemyController : MonoBehaviour
         target = new Vector3(newPos.x, 0, newPos.y) + transform.position;
     }
 
-    private void OnCollisionEnter(Collision collision) {
-        if(collision.gameObject.tag == "Bullet") {
-            Destroy(collision.gameObject);
-            //TODO
-            //definir dano e hit effect
-            Debug.Log("Acertou mizeravi");
+    public float GetDamage () {
+        if (damageTimeout > 0) {
+            return 0f;
         }
+
+        damageTimeout = damageCooldown;
+        return damage;
     }
 }
