@@ -14,6 +14,7 @@ public class GridBlock {
     public int x;
     public int y;
     public GridBlockType type;
+    public BuildingBehaviour building;
 
     private GameObject spawnedGO;
 
@@ -21,6 +22,7 @@ public class GridBlock {
         this.x = x;
         this.y = y;
         this.type = type;
+        building = null;
     }
 
     public void SetGameObject (GameObject spawnedGO) {
@@ -29,5 +31,9 @@ public class GridBlock {
 
     public GameObject GetGameObject () {
         return spawnedGO;
+    }
+
+    public void SetBuilding (BuildingBehaviour building) {
+        this.building = building;
     }
 }
