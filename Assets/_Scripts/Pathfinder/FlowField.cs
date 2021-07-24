@@ -50,6 +50,11 @@ public class FlowField {
 
     private int GetCost (Vector2Int pos) {
         GridBlock block = GridManager.instance.grid.GetBlock(pos.x, pos.y);
+
+        if (block.building != null) {
+            return (int)GridBlockType.Rock;
+        }
+      
         return (int)block.type;
     }
 

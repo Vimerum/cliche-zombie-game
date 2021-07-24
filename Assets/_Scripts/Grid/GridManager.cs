@@ -213,7 +213,7 @@ public class GridManager : MonoBehaviour
         return null;
     }
 
-    public float FindStep (Equation eq, Vector2 init, Vector2 end) {
+    private float FindStep (Equation eq, Vector2 init, Vector2 end) {
         Vector2 dir = (end - init).normalized;
         Vector2 step = init + (dir * river.density);
         return (step.x - init.x);
