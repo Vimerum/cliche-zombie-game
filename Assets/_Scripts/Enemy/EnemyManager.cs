@@ -6,11 +6,17 @@ public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager instance;
 
+    [Header("Settings")]
+    public float waveTimeout;
+
+    [HideInInspector]
+    public FlowField flowField;
+
     public int numZombie;
     public float spawnDelay;
     public GameObject prefab;
-    private FlowField flowField;
     private Coroutine waveCO = null;
+    private Coroutine waveSpawnCO = null;
     
     private void Awake() {
         if (instance != null)
@@ -23,12 +29,14 @@ public class EnemyManager : MonoBehaviour
 
     void Start() {
         flowField = new FlowField(GridManager.instance.gridSize);
-        flowField.Generate(new Vector2(50,50));
-        SpawnWave((GridManager.Direction) Random.Range(0, 4));
     }
 
-    void Update() {
-        
+    private void Update() {
+        if (waveCO == null) {
+            if (BuildingManager.instance.HasMainBase()) {
+                waveCO = StartCoroutine(WaveCO());
+            }
+        }
     }
 
     public Vector2 GetTargetDirection(Vector3 pos){
@@ -36,10 +44,18 @@ public class EnemyManager : MonoBehaviour
     }
 
     public void SpawnWave(GridManager.Direction news) {
-        if (waveCO == null) {
-            waveCO = StartCoroutine(SpawnEnemyCO(news));
+        if (waveSpawnCO == null) {
+            waveSpawnCO = StartCoroutine(SpawnEnemyCO(news));
         }
     }
+
+    private IEnumerator WaveCO () {
+        while (true) {
+            yield return new WaitForSeconds(waveTimeout);
+            SpawnWave((GridManager.Direction)Random.Range(0, 4));
+        }
+    }
+
     private IEnumerator SpawnEnemyCO(GridManager.Direction news) {
         Vector3 spawnPos = new Vector3(0, 0, 0);
         

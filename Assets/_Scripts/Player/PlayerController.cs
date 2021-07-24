@@ -6,15 +6,24 @@ public class PlayerController : MonoBehaviour
 {
     public float MovSpeed;
     public float bulletTimeOut;
-    private float nextShot = 0;
-    private readonly Vector3 diagonalHorizontal = (Vector3.right + Vector3.back).normalized;
-    private readonly Vector3 diagonalVertical = (Vector3.right + Vector3.forward).normalized;
-    private Vector3 target = new Vector3(0, -200, 0);
     public GameObject prefab;
 
+    private float nextShot = 0;
+    private Rigidbody rb;
+    private Vector3 target = new Vector3(0, -200, 0);
+    private readonly Vector3 diagonalHorizontal = (Vector3.right + Vector3.back).normalized;
+    private readonly Vector3 diagonalVertical = (Vector3.right + Vector3.forward).normalized;
+
+    private void Start() {
+        rb = GetComponent<Rigidbody>();
+    }
+
     private void Update(){
+        rb.velocity = Vector3.zero;
+
         Attack();
         KeyboardMove();
+
         if (target.y > -100)
         {
             TargetMove();

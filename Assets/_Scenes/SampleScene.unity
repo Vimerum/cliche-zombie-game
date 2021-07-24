@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.2850269, g: 0.3713935, b: 0.49601045, a: 1}
+  m_IndirectSpecularColor: {r: 0.28502697, g: 0.37139347, b: 0.49601266, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -274,6 +274,7 @@ MonoBehaviour:
   mainBase:
     name: Base Principal
     size: {x: 2, y: 2}
+    pathfindBuildingType: 1
     prefab: {fileID: 6705248734842452375, guid: 3e262fcb9e0c22c408dd36dc448c3f17, type: 3}
     previewPrefab: {fileID: 6705248734842452375, guid: 31ee609c83014254ba0be6db96d2fbd7, type: 3}
     previewNormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -281,30 +282,35 @@ MonoBehaviour:
   buildings:
   - name: Torre 1
     size: {x: 1, y: 1}
+    pathfindBuildingType: 1
     prefab: {fileID: 5135802312056999679, guid: a22888da97c62b444a9bd152701a2982, type: 3}
     previewPrefab: {fileID: 5135802312056999679, guid: 957cd74e9b6a58746972afe4ac9dbd27, type: 3}
     previewNormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     previewWrongColor: {r: 1, g: 0, b: 0, a: 0.5019608}
   - name: Torre 2
     size: {x: 1, y: 1}
+    pathfindBuildingType: 1
     prefab: {fileID: 425985444988215118, guid: d7569c9e142521d438b631fc82bfefca, type: 3}
     previewPrefab: {fileID: 425985444988215118, guid: f98e335f28d07744fb13819487260f63, type: 3}
     previewNormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     previewWrongColor: {r: 1, g: 0, b: 0, a: 0.5019608}
   - name: Muro
     size: {x: 1, y: 1}
+    pathfindBuildingType: 1
     prefab: {fileID: 8227913347150695902, guid: 4956a6f48e49bd14abf5efbfdeeb95cd, type: 3}
     previewPrefab: {fileID: 8227913347150695902, guid: d4e751df235283445b787162e2c8c4a3, type: 3}
     previewNormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     previewWrongColor: {r: 1, g: 0, b: 0, a: 0.5019608}
   - name: Madeireira
     size: {x: 2, y: 2}
+    pathfindBuildingType: 255
     prefab: {fileID: 6705248734842452375, guid: a0de5e92f9fd40347b8eb909bbd781dd, type: 3}
     previewPrefab: {fileID: 6705248734842452375, guid: 0f9cdfbcc03666b46bff0a387c004368, type: 3}
     previewNormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     previewWrongColor: {r: 1, g: 0, b: 0, a: 0.5019608}
   - name: Mineiradora
     size: {x: 2, y: 2}
+    pathfindBuildingType: 255
     prefab: {fileID: 2705482828218274514, guid: 15cf1663effd3a44c8d0d22a8b74bfe2, type: 3}
     previewPrefab: {fileID: 2705482828218274514, guid: 387fb456b7dff5245bd5306b529e6a86, type: 3}
     previewNormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -324,7 +330,7 @@ GameObject:
   - component: {fileID: 995707340}
   - component: {fileID: 995707341}
   - component: {fileID: 995707342}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,7 +425,7 @@ GameObject:
   - component: {fileID: 1122195575}
   - component: {fileID: 1122195574}
   - component: {fileID: 1122195573}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -655,6 +661,53 @@ MonoBehaviour:
   zoomYMin: 7
   zoomYMax: 14
   player: {fileID: 995707340}
+--- !u!1 &1507832400
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1507832401}
+  - component: {fileID: 1507832402}
+  m_Layer: 0
+  m_Name: EnemyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1507832401
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507832400}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1756559549}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1507832402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507832400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82cc9327ed0d4ad41a7dee17194d8792, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveTimeout: 0
+  numZombie: 100
+  spawnDelay: 0.3
+  prefab: {fileID: 4663592966954800218, guid: 8b8ef88bf0c611d4aa1ede36b2ae2b55, type: 3}
 --- !u!1 &1656498151
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,52 +825,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
---- !u!1 &1507832400
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1507832401}
-  - component: {fileID: 1507832402}
-  m_Layer: 0
-  m_Name: EnemyManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1507832401
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507832400}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1756559549}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1507832402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507832400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82cc9327ed0d4ad41a7dee17194d8792, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numZombie: 100
-  spawnDelay: 0.3
-  prefab: {fileID: 4663592966954800218, guid: 8b8ef88bf0c611d4aa1ede36b2ae2b55, type: 3}
 --- !u!1 &1687258581
 GameObject:
   m_ObjectHideFlags: 0

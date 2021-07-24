@@ -35,7 +35,8 @@ public class BuildingBehaviour : MonoBehaviour {
     [Header("References")]
     public GameObject buildingModel;
 
-    private Building building;
+    [HideInInspector]
+    public Building building;
     private BuildingPreviewStatus previewStatus;
     private GameObject buildingMenu;
 
@@ -56,8 +57,12 @@ public class BuildingBehaviour : MonoBehaviour {
             return false;
         }
 
-        GridBlock gridBlock = GridManager.instance.grid.GetBlock(previewStatus.Pos.x, previewStatus.Pos.y);
-        gridBlock.SetBuilding(this);
+        for (int x = previewStatus.Pos.x; x < previewStatus.Pos.x + building.size.x; x++) {
+            for (int y = previewStatus.Pos.y; y < previewStatus.Pos.y + building.size.y; y++) {
+                GridBlock gridBlock = GridManager.instance.grid.GetBlock(x, y);
+                gridBlock.SetBuilding(this);
+            }
+        }
 
         transform.position = new Vector3(previewStatus.Pos.x, 0, previewStatus.Pos.y);
         buildingModel.SetActive(true);
@@ -77,7 +82,7 @@ public class BuildingBehaviour : MonoBehaviour {
                 }
 
                 GridBlock currBlock = GridManager.instance.grid.GetBlock(x, y);
-                if (currBlock.building != null) {
+                if (currBlock.buildingBehaviour != null) {
                     return false;
                 }
                 if (overrideInvalidBlockTypes) {

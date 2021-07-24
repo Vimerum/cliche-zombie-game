@@ -12,6 +12,7 @@ public class FlowField {
     private int gridSize;
     private int[,] integrationField;
     private Vector2Int[,] flowField;
+    private Vector2Int target;
 
     public FlowField (int gridSize) {
         this.gridSize = gridSize;
@@ -51,14 +52,16 @@ public class FlowField {
     private int GetCost (Vector2Int pos) {
         GridBlock block = GridManager.instance.grid.GetBlock(pos.x, pos.y);
 
-        if (block.building != null) {
-            return (int)GridBlockType.Rock;
+        if (block.buildingBehaviour != null) {
+            return (int)block.buildingBehaviour.building.pathfindBuildingType;
         }
       
         return (int)block.type;
     }
 
     private void CalculateIntegrationField (Vector2Int target) {
+        this.target = target;
+
         ResetField();
 
         Queue<Vector2Int> openList = new Queue<Vector2Int>();
@@ -133,6 +136,12 @@ public class FlowField {
         CalculateIntegrationField(target.TruncateToInt());
         CalculateFlowField();
     }
+
+    public void Recalculate () {
+        CalculateIntegrationField(target);
+        CalculateFlowField();
+    }
+
     public Vector2 GetTargetDirection(Vector3 pos) {
         return GetTargetDirection(new Vector2(pos.x,pos.z));
     }

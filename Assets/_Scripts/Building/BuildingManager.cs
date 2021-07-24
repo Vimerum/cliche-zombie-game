@@ -76,9 +76,9 @@ public class BuildingManager : MonoBehaviour {
                             if (mainBaseBehaviour == null) {
                                 mainBaseBehaviour = currBuildingBehaviour;
                                 InitializeUIGeneral();
-                                // TODO: Call FlowField.Generate(mousePos);
+                                EnemyManager.instance.flowField.Generate(mousePos);
                             } else {
-                                // TODO: Call FlowField.Recalculate();
+                                EnemyManager.instance.flowField.Recalculate();
                             }
 
                             if (lastBuildingIndex >= 0 && Input.GetButton("QueueBuilding")) {
@@ -149,5 +149,9 @@ public class BuildingManager : MonoBehaviour {
 
         currBuildingBehaviour.ShowPreview(currBuilding);
         lastBuildingIndex = index;
+    }
+
+    public bool HasMainBase () {
+        return mainBaseBehaviour != null;
     }
 }
