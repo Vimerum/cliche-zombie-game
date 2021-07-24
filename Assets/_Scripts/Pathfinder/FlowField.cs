@@ -148,6 +148,9 @@ public class FlowField {
 
     public Vector2 GetTargetDirection (Vector2 pos) {
         Vector2Int posInt = Vector2Int.RoundToInt(pos);
+        if (posInt.x < 0 || posInt.x >= gridSize || posInt.y < 0 || posInt.y >= gridSize) {
+            return flowField[0, 0];
+        }
         return flowField[posInt.x, posInt.y];
     }
 

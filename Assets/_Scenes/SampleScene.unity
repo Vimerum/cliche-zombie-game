@@ -545,8 +545,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cc9327ed0d4ad41a7dee17194d8792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveTimeout: 0
-  numZombie: 100
+  waveTimeout: 5
+  minNumZombies: 300
+  maxNumZombies: 300
+  numZombiesStep: 0
   spawnDelay: 0.3
   prefab: {fileID: 4663592966954800218, guid: 8b8ef88bf0c611d4aa1ede36b2ae2b55, type: 3}
 --- !u!1 &1656498151
@@ -1040,7 +1042,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 3.1e-44, w: NaN}
+  m_BoundingSphereOverride: {x: 4.5904e-41, y: -2.619054e+25, z: 4.5904e-41, w: 9.403955e-38}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

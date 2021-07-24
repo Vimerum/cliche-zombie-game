@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovSpeed: 6
-  bulletTimeOut: 0.2
+  bulletTimeOut: 0.25
   prefab: {fileID: 8027897483003514377, guid: de22514c7dd09e0418564dc3936402b2, type: 3}
 --- !u!114 &6308064589046582750
 MonoBehaviour:

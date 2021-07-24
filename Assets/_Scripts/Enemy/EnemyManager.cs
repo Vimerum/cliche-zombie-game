@@ -8,13 +8,17 @@ public class EnemyManager : MonoBehaviour
 
     [Header("Settings")]
     public float waveTimeout;
+    public int minNumZombies;
+    public int maxNumZombies;
+    public int numZombiesStep;
+    public float spawnDelay;
+    [Header("References")]
+    public GameObject prefab;
 
     [HideInInspector]
     public FlowField flowField;
 
-    public int numZombie;
-    public float spawnDelay;
-    public GameObject prefab;
+    private int numZombies;
     private Coroutine waveCO = null;
     private Coroutine waveSpawnCO = null;
     
@@ -25,6 +29,8 @@ public class EnemyManager : MonoBehaviour
             return;
         }
         instance = this;
+
+        numZombies = minNumZombies;
     }
 
     void Start() {
@@ -43,23 +49,18 @@ public class EnemyManager : MonoBehaviour
         return flowField.GetTargetDirection(pos);
     }
 
-    public void SpawnWave(GridManager.Direction news) {
-        if (waveSpawnCO == null) {
-            waveSpawnCO = StartCoroutine(SpawnEnemyCO(news));
-        }
-    }
-
     private IEnumerator WaveCO () {
         while (true) {
+            yield return new WaitUntil(() => waveSpawnCO == null);
             yield return new WaitForSeconds(waveTimeout);
-            SpawnWave((GridManager.Direction)Random.Range(0, 4));
+            waveSpawnCO = StartCoroutine(SpawnEnemyCO((GridManager.Direction)Random.Range(0, 4)));
         }
     }
 
     private IEnumerator SpawnEnemyCO(GridManager.Direction news) {
         Vector3 spawnPos = new Vector3(0, 0, 0);
         
-        for (int i = 0; i < numZombie; i++) {
+        for (int i = 0; i < numZombies; i++) {
             int rnd = Random.Range(0, GridManager.instance.gridSize);
             switch (news) {
                 case GridManager.Direction.North: {
@@ -94,6 +95,9 @@ public class EnemyManager : MonoBehaviour
             Instantiate(prefab, spawnPos, Quaternion.identity, transform);
             yield return new WaitForSeconds(spawnDelay);
         }
-        waveCO = null;
+        numZombies += numZombiesStep;
+        numZombies = Mathf.Min(numZombies, maxNumZombies);
+
+        waveSpawnCO = null;
     }
 }

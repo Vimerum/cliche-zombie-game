@@ -17,6 +17,9 @@ public class EnemyController : MonoBehaviour
     }
 
     void Update() {
+        if (transform.position.y < -10) {
+            Destroy(gameObject);
+        }
         damageTimeout -= Time.deltaTime;
         Move();
     }
