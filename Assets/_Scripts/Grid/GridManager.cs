@@ -8,6 +8,13 @@ public class GridManager : MonoBehaviour
 {
     public static GridManager instance;
 
+    public enum Direction {
+        North,
+        East,
+        West,
+        South
+    }
+
     [Header("Settings")]
     public int gridSize = 100;
     public Terrain.RiverSettings river;
@@ -83,7 +90,6 @@ public class GridManager : MonoBehaviour
 
     private void GenerateRiver () {
         Vector2 waterInit = new Vector2(UnityEngine.Random.Range(0, gridSize), UnityEngine.Random.Range(0, gridSize));
-
         float[] dists = { Vector2.Distance(waterInit, borders[0]), Vector2.Distance(waterInit, borders[1]), Vector2.Distance(waterInit, borders[2]), Vector2.Distance(waterInit, borders[3])};
         int borderIndex = Array.IndexOf(dists, dists.Max());
 
@@ -104,16 +110,13 @@ public class GridManager : MonoBehaviour
             waterInit = waterEnd;
             waterEnd = tmp;
         }
-        Debug.DrawLine(new Vector3(waterInit.x, 10f, waterInit.y), new Vector3(waterEnd.x, 10f, waterEnd.y), Color.blue, 900000f);
-
+        
         Equation eq = new Equation(waterInit, waterEnd);
-
         float step = FindStep(eq, waterInit, waterEnd);
 
         for (float x = waterInit.x; x <= waterEnd.x; x += step) {
             Vector2 pos = eq.FindYWithNoise(x, river);
             Collider[] hits = Physics.OverlapSphere(new Vector3(pos.x, 0f, pos.y), river.thickness);
-            
 
             foreach(Collider block in hits) {
                 GridBlockPosition blockPos = block.gameObject.GetComponent<GridBlockPosition>();
@@ -138,18 +141,15 @@ public class GridManager : MonoBehaviour
                         ChangeGridBlockType(currBlock, GridBlockType.Forest);
                     }
                 }
-
             }
         }
     }
 
     private GameObject SpawnBlock (int x, int y, GridBlockType type) {
         GameObject prefab = GetPrefabByType(type);
-
         GameObject spawnedGO = Instantiate(prefab, new Vector3(x, 0, y), Quaternion.identity, gridBlockParent);
         GridBlockPosition pos = spawnedGO.AddComponent<GridBlockPosition>();
         pos.SetGridPosition(x, y);
-
         return spawnedGO;
     }
 
@@ -160,7 +160,6 @@ public class GridManager : MonoBehaviour
                 block.SetGameObject(SpawnBlock(x, y, block.type));
             }
         }
-
     }
 
     private void GenerateCollider () {
@@ -201,7 +200,6 @@ public class GridManager : MonoBehaviour
 
         Destroy(currBlock.GetGameObject());
         currBlock.type = type;
-
         currBlock.SetGameObject(SpawnBlock(x, y, type));
     }
 
@@ -217,9 +215,7 @@ public class GridManager : MonoBehaviour
 
     private float FindStep (Equation eq, Vector2 init, Vector2 end) {
         Vector2 dir = (end - init).normalized;
-
         Vector2 step = init + (dir * river.density);
-
         return (step.x - init.x);
     }
 }
