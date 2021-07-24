@@ -155,12 +155,12 @@ public class FlowField {
     }
 
     public int GetIntegration (Vector2 pos) {
-        Vector2Int posInt = Vector2Int.FloorToInt(pos);
+        Vector2Int posInt = Vector2Int.RoundToInt(pos);
         return GetIntegrationFieldValue(posInt);
     }
 
     public int GetCostByPos (Vector2 pos) {
-        Vector2Int posInt = Vector2Int.FloorToInt(pos);
+        Vector2Int posInt = Vector2Int.RoundToInt(pos);
         return GetCost(posInt);
     }
 }

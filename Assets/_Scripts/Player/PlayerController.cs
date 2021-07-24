@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float MovSpeed;
+    [Header("Settings")]
+    public float speed;
     public float bulletTimeOut;
+    [Header("References")]
     public GameObject prefab;
 
     private float nextShot = 0;
     private Rigidbody rb;
     private Vector3 target = new Vector3(0, -200, 0);
+    [ReadOnly]public GridBlock currGridBlock;
     private readonly Vector3 diagonalHorizontal = (Vector3.right + Vector3.back).normalized;
     private readonly Vector3 diagonalVertical = (Vector3.right + Vector3.forward).normalized;
 
@@ -21,33 +24,27 @@ public class PlayerController : MonoBehaviour
     private void Update(){
         rb.velocity = Vector3.zero;
 
-        Attack();
-        KeyboardMove();
-
-        if (target.y > -100)
-        {
-            TargetMove();
+        Vector2Int currPos = new Vector2(transform.position.x, transform.position.z).TruncateToInt();
+        if (currGridBlock == null || currGridBlock.x != currPos.x || currGridBlock.y != currPos.y) {
+            if (currPos.x >= 0 && currPos.x < GridManager.instance.gridSize && currPos.x >= 0 && currPos.x < GridManager.instance.gridSize) {
+                currGridBlock = GridManager.instance.grid.GetBlock(currPos.x, currPos.y);
+            }
         }
+
+        Attack();
+        Move();
     }
 
-    private void KeyboardMove(){
+    private void Move(){
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
         if (horizontal != 0 || vertical !=0){
             target = new Vector3(0, -200, 0);
         }
-        transform.position += (diagonalHorizontal * horizontal + diagonalVertical * vertical).normalized* MovSpeed * Time.deltaTime;
+        transform.position += (diagonalHorizontal * horizontal + diagonalVertical * vertical).normalized * speed * (currGridBlock == null ? 1f : currGridBlock.speedModifier) * Time.deltaTime;
     }
 
-    private void TargetMove(){
-        Vector3 direction = (target - transform.position).normalized;
-        transform.position += direction * MovSpeed * Time.deltaTime;
-
-        if (Vector3.Distance(transform.position,target) < 0.01){
-            target = new Vector3(0, -200, 0);
-        }
-    }
     public void SetTarget(Vector3 target){
         this.target = target;
         this.target.y = 0;
