@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.28502697, g: 0.37139347, b: 0.49601266, a: 1}
+  m_IndirectSpecularColor: {r: 0.2850269, g: 0.3713935, b: 0.49601045, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -308,7 +308,7 @@ MonoBehaviour:
     previewPrefab: {fileID: 6705248734842452375, guid: 0f9cdfbcc03666b46bff0a387c004368, type: 3}
     previewNormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     previewWrongColor: {r: 1, g: 0, b: 0, a: 0.5019608}
-  - name: Mineiradora
+  - name: Mineradora
     size: {x: 2, y: 2}
     pathfindBuildingType: 255
     prefab: {fileID: 2705482828218274514, guid: 15cf1663effd3a44c8d0d22a8b74bfe2, type: 3}
