@@ -9,19 +9,22 @@ public enum GridBlockType {
     Rock = 255,
 }
 
+[System.Serializable]
 public class GridBlock {
 
     public int x;
     public int y;
+    public float speedModifier;
     public GridBlockType type;
     public BuildingBehaviour buildingBehaviour;
 
     private GameObject spawnedGO;
 
-    public GridBlock (int x, int y, GridBlockType type) {
+    public GridBlock (int x, int y, GridBlockType type, float speedModifier) {
         this.x = x;
         this.y = y;
         this.type = type;
+        this.speedModifier = speedModifier;
         buildingBehaviour = null;
     }
 

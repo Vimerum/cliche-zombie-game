@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
@@ -8,6 +9,7 @@ public class GameManager : MonoBehaviour {
     [Header("Settings")]
     public float respawnTime;
     [Header("References")]
+    public GameObject gameOverCanvas;
     public CameraController cameraController;
     [Header("Prefabs")]
     public GameObject playerPrefab;
@@ -22,6 +24,7 @@ public class GameManager : MonoBehaviour {
         }
 
         instance = this;
+        gameOverCanvas.SetActive(false);
     }
 
     private void Start() {
@@ -47,7 +50,7 @@ public class GameManager : MonoBehaviour {
     private Vector3 GetPlayerSpawnPosition () {
         if (!BuildingManager.instance.HasMainBase()) {
             Vector3 pos = new Vector3(Random.Range(0, GridManager.instance.gridSize), 0, Random.Range(0, GridManager.instance.gridSize));
-            while (GridManager.instance.grid.GetBlock(Mathf.FloorToInt(pos.x), Mathf.FloorToInt(pos.z)).type == GridBlockType.Rock) {
+            while (GridManager.instance.grid.GetBlock(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.z)).type == GridBlockType.Rock) {
                 pos = new Vector3(Random.Range(0, GridManager.instance.gridSize), 0, Random.Range(0, GridManager.instance.gridSize));
             }
             return pos;
@@ -60,5 +63,13 @@ public class GameManager : MonoBehaviour {
         if (playerRespawnCoroutine == null) {
             playerRespawnCoroutine = StartCoroutine(RespawnPlayerCO());
         }
+    }
+
+    public void GameOver () {
+        gameOverCanvas.SetActive(true);
+    }
+
+    public void LoadMainMenu () {
+        SceneManager.LoadScene(0);
     }
 }

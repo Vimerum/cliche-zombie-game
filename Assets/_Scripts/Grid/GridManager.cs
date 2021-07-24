@@ -14,12 +14,18 @@ public class GridManager : MonoBehaviour
         West,
         South
     }
+    [Serializable]
+    public struct GridBlockTypeToSpeed {
+        public GridBlockType type;
+        public float speedModifier;
+    }
 
     [Header("Settings")]
     public int gridSize = 100;
     public Terrain.RiverSettings river;
     public Terrain.ResourceSettings forest;
     public Terrain.ResourceSettings rock;
+    public List<GridBlockTypeToSpeed> gridBlockTypeToSpeed;
     [Header("References")]
     public Transform gridBlockParent;
     [Header("Prefabs")]
@@ -82,7 +88,8 @@ public class GridManager : MonoBehaviour
     private void GenerateGrass() {
         for (int x = 0; x < gridSize; x++) {
             for (int y = 0; y < gridSize; y++) {
-                GridBlock newBlock = new GridBlock(x, y, GridBlockType.Grass);
+                float speedModifier = gridBlockTypeToSpeed.Find(item => item.type == GridBlockType.Grass).speedModifier;
+                GridBlock newBlock = new GridBlock(x, y, GridBlockType.Grass, speedModifier);
                 grid.SetBlock(newBlock);
             }
         }
@@ -199,7 +206,10 @@ public class GridManager : MonoBehaviour
         }
 
         Destroy(currBlock.GetGameObject());
+
         currBlock.type = type;
+        currBlock.speedModifier = gridBlockTypeToSpeed.Find(item => item.type == type).speedModifier;
+
         currBlock.SetGameObject(SpawnBlock(x, y, type));
     }
 

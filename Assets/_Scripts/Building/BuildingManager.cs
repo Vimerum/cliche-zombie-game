@@ -28,6 +28,7 @@ public class BuildingManager : MonoBehaviour {
     private BuildingMode mode;
 
     private int lastBuildingIndex = -1;
+    private bool hasMainBasedSpawned = false;
     private RectTransform buildingMenuRect;
     private Camera cam;
     private BuildingBehaviour mainBaseBehaviour;
@@ -53,6 +54,12 @@ public class BuildingManager : MonoBehaviour {
     }
 
     private void Update() {
+        if (hasMainBasedSpawned && mainBaseBehaviour == null) {
+            DeactivateMenu();
+            GameManager.instance.GameOver();
+            return;
+        }
+
         switch(mode) {
             case BuildingMode.None: {
                     if (Input.GetMouseButtonDown(1)) {
@@ -68,13 +75,14 @@ public class BuildingManager : MonoBehaviour {
                 }
             case BuildingMode.Positioning: {
                     if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 100, buildingPositionLayers)) {
-                        Vector2Int mousePos = new Vector2Int(Mathf.FloorToInt(hit.point.x), Mathf.FloorToInt(hit.point.z));
+                        Vector2Int mousePos = new Vector2Int(Mathf.RoundToInt(hit.point.x), Mathf.RoundToInt(hit.point.z));
 
                         currBuildingBehaviour.UpdatePreview(mousePos);
 
                         if (Input.GetMouseButtonDown(0) && currBuildingBehaviour.Spawn()) {
                             if (mainBaseBehaviour == null) {
                                 mainBaseBehaviour = currBuildingBehaviour;
+                                hasMainBasedSpawned = true;
                                 InitializeUIGeneral();
                                 EnemyManager.instance.flowField.Generate(mousePos);
                             } else {
@@ -124,9 +132,18 @@ public class BuildingManager : MonoBehaviour {
     }
 
     public void ActivateMenu () {
+        if (hasMainBasedSpawned && mainBaseBehaviour == null) {
+            return;
+        }
+
         mode = BuildingMode.Selecting;
+
+        Vector3 pos = Input.mousePosition;
+        pos.x = Mathf.Min(pos.x, Screen.width - buildingMenuRect.sizeDelta.x);
+        pos.y = Mathf.Max(pos.y, buildingMenuRect.sizeDelta.y);
+
         buildingMenu.SetActive(true);
-        buildingMenuRect.position = Input.mousePosition;
+        buildingMenuRect.position = pos;
     }
 
     public void DeactivateMenu () {
