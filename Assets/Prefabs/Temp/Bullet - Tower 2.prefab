@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 6633719405702239956}
   - component: {fileID: 6084055017459755551}
   - component: {fileID: 4961045441696282479}
-  m_Layer: 8
-  m_Name: Bullet
+  m_Layer: 10
+  m_Name: Bullet - Tower 2
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpd: 20
-  lifeSpan: 1.5
-  damage: 10
+  lifeSpan: 0.5
+  damage: 2
 --- !u!33 &1260424634221536422
 MeshFilter:
   m_ObjectHideFlags: 0
