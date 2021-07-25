@@ -12,10 +12,10 @@ public class Grid  {
     }
 
     public void SetBlock (GridBlock block) {
-        if (block.x < 0 || block.x > gridSize) {
+        if (block.x < 0 || block.x >= gridSize) {
             return;
         }
-        if (block.y < 0 || block.y > gridSize) {
+        if (block.y < 0 || block.y >= gridSize) {
             return;
         }
 
@@ -23,10 +23,10 @@ public class Grid  {
     }
 
     public GridBlock GetBlock (int x, int y) {
-        if (x < 0 || x > gridSize) {
+        if (x < 0 || x >= gridSize) {
             return null;
         }
-        if (y < 0 || y > gridSize) {
+        if (y < 0 || y >= gridSize) {
             return null;
         }
 

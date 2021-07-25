@@ -3,6 +3,13 @@ using System.Collections;
 
 public class HealthBehaviourPlayer : HealthBehaviour {
 
+    [Header("Settings - Player")]
+    public float invincibleTime; 
+
+    private void Start() {
+        timeout = invincibleTime;
+    }
+
     protected override void Death() {
         base.Death();
 

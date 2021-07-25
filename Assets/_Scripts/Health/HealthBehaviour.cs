@@ -8,10 +8,11 @@ public abstract class HealthBehaviour : MonoBehaviour {
     [Header("References")]
     public Slider healthSlider;
 
-    private bool isDead = false;
-    private float health;
-    private Transform canvas;
-    private Transform cam;
+    protected bool isDead = false;
+    protected float health;
+    protected float timeout = -1f;
+    protected Transform canvas;
+    protected Transform cam;
 
     protected virtual void Awake() {
         health = maxHealth;
@@ -35,10 +36,16 @@ public abstract class HealthBehaviour : MonoBehaviour {
             Death();
             return;
         }
+
+        if (timeout >= 0f) {
+            timeout -= Time.deltaTime;
+        }
     }
 
     public virtual void Damage (float damage) {
-        health -= damage;
+        if (timeout <= 0f) {
+            health -= damage;
+        }
     }
 
     protected virtual void Death() {
