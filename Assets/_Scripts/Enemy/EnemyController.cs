@@ -4,20 +4,40 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public static bool shouldDance = false;
+    [Header("Settings")]
     public float speed;
     public float damageCooldown;
     public float damage;
+    [Header("References")]
+    public Animator anim;
 
     private float damageTimeout;
     private Vector3 target;
     private GridBlock currGridBlock;
+    private Vector3 lastPos;
+    private bool setDance = false;
+    private bool shouldDanceLocal = false;
 
     void Start() {
         damageTimeout = -1f;
+        lastPos = transform.position;
         GetNewTarget();
     }
 
     void Update() {
+        if (shouldDance && !setDance) {
+            shouldDanceLocal = true;
+            setDance = true;
+        }
+        if (shouldDance && shouldDanceLocal) {
+            anim.SetTrigger("Thriller");
+            shouldDanceLocal = false;
+        }
+        if (shouldDance) {
+            return;
+        }
+        
         if (transform.position.y < -10) {
             Destroy(gameObject);
         }
@@ -40,8 +60,19 @@ public class EnemyController : MonoBehaviour
         if (dist < 0.5f || dist > 1.5f){
             GetNewTarget();
         }
+
+        float speedModifier = (currGridBlock == null ? 1f : currGridBlock.speedModifier);
         transform.LookAt(target);
-        transform.position += transform.forward * speed * (currGridBlock == null ? 1f : currGridBlock.speedModifier) * Time.deltaTime;
+        transform.position += transform.forward * speed * speedModifier * Time.deltaTime;
+
+        bool isRunning = false;
+        float lastPosDist = Vector3.Distance(transform.position, lastPos);
+        if (lastPosDist >= (speed * speedModifier * Time.deltaTime)) {
+            isRunning = true;
+        }
+
+        anim.SetBool("Running", isRunning);
+        anim.SetFloat("Speed Modifier", speedModifier);
     }
 
     public void GetNewTarget() {
@@ -55,6 +86,7 @@ public class EnemyController : MonoBehaviour
             return 0f;
         }
 
+        anim.SetTrigger("Attack");
         damageTimeout = damageCooldown;
         return damage;
     }

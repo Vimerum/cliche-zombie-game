@@ -1024,7 +1024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cc9327ed0d4ad41a7dee17194d8792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveTimeout: 20
+  waveTimeout: 1
   minNumZombies: 50
   maxNumZombies: 300
   numZombiesStep: 10
