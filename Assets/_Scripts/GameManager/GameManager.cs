@@ -22,7 +22,8 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
-
+        
+        Time.timeScale = 1;
         instance = this;
         gameOverCanvas.SetActive(false);
     }
@@ -67,6 +68,7 @@ public class GameManager : MonoBehaviour {
 
     public void GameOver () {
         gameOverCanvas.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void LoadMainMenu () {

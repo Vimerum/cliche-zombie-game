@@ -22,7 +22,7 @@ public class HealthBehaviourPlayer : HealthBehaviour {
             EnemyController enemyController = collision.gameObject.GetComponent<EnemyController>();
 
             float damage = enemyController.GetDamage();
-            Debug.Log("Tomou: " + damage);
+            //Debug.Log("Tomou: " + damage);
 
             Damage(damage);
         }
