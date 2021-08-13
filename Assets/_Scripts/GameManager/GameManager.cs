@@ -2,7 +2,12 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 
+
 public class GameManager : MonoBehaviour {
+    public enum State {
+        InGame = 0,
+        GameOver = 1,
+    }
 
     public static GameManager instance;
 
@@ -14,6 +19,8 @@ public class GameManager : MonoBehaviour {
     [Header("Prefabs")]
     public GameObject playerPrefab;
 
+    [ReadOnly]
+    public State state;
     private GameObject player;
     private Coroutine playerRespawnCoroutine;
 
@@ -29,6 +36,7 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Start() {
+        state = State.InGame;
         Begin();
     }
 
@@ -64,6 +72,10 @@ public class GameManager : MonoBehaviour {
         if (playerRespawnCoroutine == null) {
             playerRespawnCoroutine = StartCoroutine(RespawnPlayerCO());
         }
+    }
+
+    public void BeginGameOver () {
+        state = State.GameOver;
     }
 
     public void GameOver () {

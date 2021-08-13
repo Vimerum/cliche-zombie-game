@@ -39,6 +39,11 @@ public class EnemyManager : MonoBehaviour {
     }
 
     private void Update() {
+        if (GameManager.instance.state == GameManager.State.GameOver) {
+            StopAllCoroutines();
+            SpawnAlert.transform.parent.gameObject.SetActive(false);
+            return;
+        }
         if (waveCO == null) {
             if (BuildingManager.instance.HasMainBase()) {
                 waveCO = StartCoroutine(WaveCO());
