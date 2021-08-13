@@ -31,6 +31,7 @@ public class BuildingManager : MonoBehaviour {
     private bool hasMainBasedSpawned = false;
     private RectTransform buildingMenuRect;
     private Camera cam;
+    private Coroutine endGameCO = null;
     private BuildingBehaviour mainBaseBehaviour;
     private BuildingBehaviour currBuildingBehaviour;
 
@@ -55,8 +56,12 @@ public class BuildingManager : MonoBehaviour {
 
     private void Update() {
         if (hasMainBasedSpawned && mainBaseBehaviour == null) {
+            if (endGameCO != null) {
+                return;
+            }
             DeactivateMenu();
-            GameManager.instance.GameOver();
+            EnemyController.shouldDance = true;
+            endGameCO = StartCoroutine(EndGameCO());
             return;
         }
 
@@ -103,6 +108,11 @@ public class BuildingManager : MonoBehaviour {
                     break;
                 }
         }
+    }
+
+    private IEnumerator EndGameCO () {
+        yield return new WaitForSeconds(19f);
+        GameManager.instance.GameOver();
     }
 
     private void InitializeUIBegining () {
