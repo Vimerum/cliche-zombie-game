@@ -47,7 +47,7 @@ public class EnemyController : MonoBehaviour
     public void GetNewTarget() {
         Vector2 newPos = EnemyManager.instance.GetTargetDirection(transform.position);
         target = new Vector3(newPos.x, 0, newPos.y) + new Vector3(Mathf.RoundToInt(transform.position.x), 0f, Mathf.RoundToInt(transform.position.z));
-        Debug.Log(Vector3.Distance(transform.position, target));
+        //Debug.Log(Vector3.Distance(transform.position, target));
     }
 
     public float GetDamage () {
