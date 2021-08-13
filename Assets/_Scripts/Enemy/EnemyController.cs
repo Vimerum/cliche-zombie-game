@@ -12,16 +12,18 @@ public class EnemyController : MonoBehaviour
     [Header("References")]
     public Animator anim;
 
-    private float damageTimeout;
+    private Rigidbody rb;
     private Vector3 target;
     private GridBlock currGridBlock;
     private Vector3 lastPos;
+    private float damageTimeout;
     private bool setDance = false;
     private bool shouldDanceLocal = false;
 
     void Start() {
         damageTimeout = -1f;
         lastPos = transform.position;
+        rb = GetComponent<Rigidbody>();
         GetNewTarget();
     }
 
@@ -35,6 +37,7 @@ public class EnemyController : MonoBehaviour
             shouldDanceLocal = false;
         }
         if (shouldDance) {
+            rb.freezeRotation = true;
             return;
         }
         

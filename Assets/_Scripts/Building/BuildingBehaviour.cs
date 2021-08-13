@@ -18,12 +18,12 @@ public class BuildingBehaviour : MonoBehaviour {
             IsPositionValid = isPositionValid;
         }
 
-        public void UpdatePreviewColor (Color color) {
+        public void UpdatePreviewColor (bool isValid) {
             if (previewBehaviour == null) {
                 previewBehaviour = previewGameObject.GetComponent<BuildingPreviewBehaviour>();
             }
 
-            previewBehaviour.SetPreviewColor(color);
+            previewBehaviour.SetPreviewColor(isValid);
         }
     }
 
@@ -49,7 +49,7 @@ public class BuildingBehaviour : MonoBehaviour {
 
     public void UpdatePreview (Vector2Int pos) {
         previewStatus.SetPos(pos, IsPositionValid(pos));
-        previewStatus.UpdatePreviewColor(building.GetColor(previewStatus.IsPositionValid));
+        previewStatus.UpdatePreviewColor(previewStatus.IsPositionValid);
     }
 
     public bool Spawn () {

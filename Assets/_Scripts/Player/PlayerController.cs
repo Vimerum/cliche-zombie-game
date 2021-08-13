@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float bulletTimeOut;
     [Header("References")]
     public GameObject prefab;
+    public Animator anim;
 
     private float nextShot = 0;
     private Rigidbody rb;
@@ -42,7 +43,14 @@ public class PlayerController : MonoBehaviour
         if (horizontal != 0 || vertical !=0){
             target = new Vector3(0, -200, 0);
         }
-        transform.position += (diagonalHorizontal * horizontal + diagonalVertical * vertical).normalized * speed * (currGridBlock == null ? 1f : currGridBlock.speedModifier) * Time.deltaTime;
+        Vector3 dir = (diagonalHorizontal * horizontal + diagonalVertical * vertical).normalized;
+        float speedModifier = currGridBlock == null ? 1f : currGridBlock.speedModifier;
+
+        transform.LookAt(transform.position + dir);
+        transform.position += dir * speed * speedModifier * Time.deltaTime;
+
+        anim.SetBool("Running", dir.sqrMagnitude > 0f);
+        anim.SetFloat("Speed", speedModifier);
     }
 
     public void SetTarget(Vector3 target){
@@ -63,6 +71,8 @@ public class PlayerController : MonoBehaviour
 
                 Instantiate(prefab, origin, Quaternion.LookRotation(direction.normalized));
             }
+            anim.ResetTrigger("Shooting");
+            anim.SetTrigger("Shooting");
         }
         else {
             nextShot -= Time.deltaTime;

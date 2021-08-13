@@ -16,15 +16,5 @@ public class Building {
     public GameObject prefab;
     [Header("Preview")]
     public GameObject previewPrefab;
-    public Color previewNormalColor;
-    public Color previewWrongColor;
-
-    public Color GetColor (bool isPositionValid) {
-        if (isPositionValid) {
-            return previewNormalColor;
-        } else {
-            return previewWrongColor;
-        }
-    }
 
 }

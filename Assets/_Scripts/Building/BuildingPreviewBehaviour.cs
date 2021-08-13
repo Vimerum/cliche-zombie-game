@@ -4,14 +4,15 @@ using System.Collections.Generic;
 public class BuildingPreviewBehaviour : MonoBehaviour {
 
     [Header("References")]
-    public List<Renderer> renderers;
+    public List<GameObject> validPreview;
+    public List<GameObject> invalidPreview;
 
-    public void SetPreviewColor (Color color) {
-        foreach(Renderer rend in renderers) {
-            Material[] materials = rend.materials;
-            foreach(Material mat in materials) {
-                mat.color = color;
-            }
+    public void SetPreviewColor (bool isValidPosition) {
+        foreach(GameObject preview in validPreview) {
+            preview.SetActive(isValidPosition);
+        }
+        foreach(GameObject preview in invalidPreview) {
+            preview.SetActive(!isValidPosition);
         }
     }
 }
