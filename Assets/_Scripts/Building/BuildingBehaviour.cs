@@ -49,13 +49,20 @@ public class BuildingBehaviour : MonoBehaviour {
 
     public void UpdatePreview (Vector2Int pos) {
         previewStatus.SetPos(pos, IsPositionValid(pos));
-        previewStatus.UpdatePreviewColor(previewStatus.IsPositionValid);
+        previewStatus.UpdatePreviewColor(previewStatus.IsPositionValid && building.HaveResources());
     }
 
     public bool Spawn () {
         if (!previewStatus.IsPositionValid) {
             return false;
         }
+
+        if (!building.HaveResources()) {
+            return false;
+        }
+        building.price.ForEach((item) => {
+            ResourcesManager.instance.Withdraw(item.resource, item.value);
+        });
 
         for (int x = previewStatus.Pos.x; x < previewStatus.Pos.x + building.size.x; x++) {
             for (int y = previewStatus.Pos.y; y < previewStatus.Pos.y + building.size.y; y++) {
