@@ -5,18 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public GameObject popUp;
+    public GameObject quitPopUp;
+    public GameObject controlPopUp;
 
     public void NewGame() {
         SceneManager.LoadScene(1);
     }
 
+    public void ShowControlsPopUp() {
+        controlPopUp.SetActive(true);
+    }
+
+    public void HideControlsPopUp() {
+        controlPopUp.SetActive(false);
+    }
+
     public void ShowQuitPopUp() {
-        popUp.SetActive(true);
+        quitPopUp.SetActive(true);
     }
 
     public void HideQuitPopUp() {
-        popUp.SetActive(false);
+        quitPopUp.SetActive(false);
     }
 
     public void Quit() {
