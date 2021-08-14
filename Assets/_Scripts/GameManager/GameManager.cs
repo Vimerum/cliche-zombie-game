@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
     [Header("References")]
     public GameObject gameOverCanvas;
     public CameraController cameraController;
+    public GameObject minimap;
     [Header("Prefabs")]
     public GameObject playerPrefab;
 
@@ -38,6 +39,12 @@ public class GameManager : MonoBehaviour {
     private void Start() {
         state = State.InGame;
         Begin();
+    }
+
+    private void Update() {
+        if (Input.GetButtonDown("Minimap")) {
+            minimap.SetActive(!minimap.activeSelf);
+        }
     }
 
     private void Begin () {

@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 4129856559661135323}
   - component: {fileID: -2448959237822398027}
   m_Layer: 6
-  m_Name: Building - Torre 1
+  m_Name: Building - Torre Basica
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

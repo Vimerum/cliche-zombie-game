@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 6723044970173715453}
   - component: {fileID: -1417381080207109686}
   m_Layer: 6
-  m_Name: Building - Torre 2
+  m_Name: Building - Torre Rapida
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

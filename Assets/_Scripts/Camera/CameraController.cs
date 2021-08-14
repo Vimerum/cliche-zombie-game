@@ -10,11 +10,10 @@ public class CameraController : MonoBehaviour
     public float zoomYMax = 14f;
     [Header("References")]
     public Transform target;
-
-    private Transform cam;
+    public Transform mainCam;
 
     private void Start(){
-        cam = transform.GetChild(0);
+        mainCam = transform.GetChild(0);
     }
 
     private void Update(){
@@ -30,12 +29,12 @@ public class CameraController : MonoBehaviour
     private void Zoom () {
         float scrool = Input.GetAxis("Mouse ScrollWheel");
 
-        if (cam.localPosition.y <= zoomYMin) {
+        if (mainCam.localPosition.y <= zoomYMin) {
             scrool = Mathf.Min(0f, scrool);
-        } else if (cam.localPosition.y >= zoomYMax) {
+        } else if (mainCam.localPosition.y >= zoomYMax) {
             scrool = Mathf.Max(0f, scrool);
         }
 
-        cam.localPosition += cam.forward * scrool * scroolSpeed;
+        mainCam.localPosition += mainCam.forward * scrool * scroolSpeed;
     }
 }
