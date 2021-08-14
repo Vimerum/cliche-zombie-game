@@ -112,7 +112,7 @@ public class BuildingManager : MonoBehaviour {
 
     private IEnumerator EndGameCO () {
         GameManager.instance.BeginGameOver();
-        yield return new WaitForSeconds(19f);
+        yield return new WaitForSeconds(14f);
         GameManager.instance.GameOver();
     }
 
