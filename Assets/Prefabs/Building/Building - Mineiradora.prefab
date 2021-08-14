@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 6759540783833299864}
   - component: {fileID: 4181365731117218797}
   - component: {fileID: 662856806474536000}
+  - component: {fileID: 165368144363119432}
   - component: {fileID: -492373049107162059}
   m_Layer: 6
   m_Name: Building - Mineiradora
@@ -160,16 +161,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   overrideInvalidBlockTypes: 0
   invalidBlockTypes: 
-  prefabBuildingMenu: {fileID: 0}
   buildingModel: {fileID: 8837325113173027290}
+  resourcesBehaviour: {fileID: 165368144363119432}
   building:
     name: 
     size: {x: 0, y: 0}
+    price: []
     pathfindBuildingType: 0
     prefab: {fileID: 0}
+    validation:
+      rules: []
     previewPrefab: {fileID: 0}
-    previewNormalColor: {r: 0, g: 0, b: 0, a: 0}
-    previewWrongColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &662856806474536000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +186,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   healthSlider: {fileID: 6748879544860149039}
+--- !u!114 &165368144363119432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2705482828218274514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2e2f810fe6bfce41a1eb15494ec888a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rate: 1
+  resource: 1
 --- !u!54 &-492373049107162059
 Rigidbody:
   m_ObjectHideFlags: 0

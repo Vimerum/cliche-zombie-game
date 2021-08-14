@@ -21,6 +21,7 @@ public class Building {
     public List<Price> price;
     public PathfindBuildingType pathfindBuildingType;
     public GameObject prefab;
+    public BuildingValidationBase validation;
     [Header("Preview")]
     public GameObject previewPrefab;
 
@@ -32,5 +33,9 @@ public class Building {
         }
 
         return haveResources;
+    }
+
+    public bool Validate (Vector2Int position) {
+        return validation.Validate(this, position);
     }
 }

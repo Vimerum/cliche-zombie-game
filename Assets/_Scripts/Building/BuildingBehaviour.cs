@@ -30,17 +30,18 @@ public class BuildingBehaviour : MonoBehaviour {
     [Header("Settings")]
     public bool overrideInvalidBlockTypes;
     public List<GridBlockType> invalidBlockTypes;
-    [Header("UI")]
-    public GameObject prefabBuildingMenu;
     [Header("References")]
     public GameObject buildingModel;
+    public ResourcesBehaviour resourcesBehaviour;
 
     [HideInInspector]
     public Building building;
     private BuildingPreviewStatus previewStatus;
-    private GameObject buildingMenu;
 
     public void ShowPreview (Building building) {
+        if (resourcesBehaviour != null) {
+            resourcesBehaviour.enabled = false;
+        }
         this.building = building;
 
         buildingModel.SetActive(false);
@@ -49,17 +50,21 @@ public class BuildingBehaviour : MonoBehaviour {
 
     public void UpdatePreview (Vector2Int pos) {
         previewStatus.SetPos(pos, IsPositionValid(pos));
-        previewStatus.UpdatePreviewColor(previewStatus.IsPositionValid && building.HaveResources());
+        previewStatus.UpdatePreviewColor(previewStatus.IsPositionValid && building.HaveResources() && building.Validate(previewStatus.Pos));
     }
 
     public bool Spawn () {
-        if (!previewStatus.IsPositionValid) {
-            return false;
-        }
-
         if (!building.HaveResources()) {
             return false;
         }
+        if (!previewStatus.IsPositionValid) {
+            return false;
+        }
+        if (!building.Validate(previewStatus.Pos)) {
+            Debug.Log("Invalid position " + previewStatus.Pos);
+            return false;
+        }
+
         building.price.ForEach((item) => {
             ResourcesManager.instance.Withdraw(item.resource, item.value);
         });
@@ -74,6 +79,9 @@ public class BuildingBehaviour : MonoBehaviour {
         transform.position = new Vector3(previewStatus.Pos.x, 0, previewStatus.Pos.y);
         buildingModel.SetActive(true);
 
+        if (resourcesBehaviour != null) {
+            resourcesBehaviour.enabled = true;
+        }
         Destroy(previewStatus.previewGameObject);
         return true;
     }
@@ -105,15 +113,5 @@ public class BuildingBehaviour : MonoBehaviour {
         }
 
         return true;
-    }
-
-    public void OnClick() {
-        buildingMenu = Instantiate(prefabBuildingMenu, BuildingManager.instance.canvas);
-    }
-
-    public void CloseMenu () {
-        if (buildingMenu != null) {
-            Destroy(buildingMenu);
-        }
     }
 }

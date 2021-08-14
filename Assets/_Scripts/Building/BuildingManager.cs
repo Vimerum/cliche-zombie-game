@@ -120,7 +120,7 @@ public class BuildingManager : MonoBehaviour {
         GameObject itemGO = Instantiate(buildingMenuItem, buildingMenu.transform);
         BuildingItem item = itemGO.GetComponent<BuildingItem>();
 
-        item.SetBuilding(-1, mainBase.name);
+        item.SetBuilding(-1, mainBase.name, mainBase.price);
     }
 
     private void InitializeUIGeneral () {
@@ -130,7 +130,7 @@ public class BuildingManager : MonoBehaviour {
             GameObject itemGO = Instantiate(buildingMenuItem, buildingMenu.transform);
             BuildingItem item = itemGO.GetComponent<BuildingItem>();
 
-            item.SetBuilding(i, buildings[i].name);
+            item.SetBuilding(i, buildings[i].name, buildings[i].price);
         }
     }
 

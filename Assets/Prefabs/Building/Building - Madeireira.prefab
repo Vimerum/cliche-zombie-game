@@ -342,6 +342,7 @@ GameObject:
   - component: {fileID: 1290141913295121296}
   - component: {fileID: -9209024233669425220}
   - component: {fileID: 4465820997752848504}
+  - component: {fileID: 2170069892046251592}
   - component: {fileID: -7086757480770644782}
   m_Layer: 6
   m_Name: Building - Madeireira
@@ -380,16 +381,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   overrideInvalidBlockTypes: 0
   invalidBlockTypes: 
-  prefabBuildingMenu: {fileID: 0}
   buildingModel: {fileID: 2329347955231941443}
+  resourcesBehaviour: {fileID: 2170069892046251592}
   building:
     name: 
     size: {x: 0, y: 0}
+    price: []
     pathfindBuildingType: 0
     prefab: {fileID: 0}
+    validation:
+      rules: []
     previewPrefab: {fileID: 0}
-    previewNormalColor: {r: 0, g: 0, b: 0, a: 0}
-    previewWrongColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &4465820997752848504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,6 +406,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   healthSlider: {fileID: 5004985249907662884}
+--- !u!114 &2170069892046251592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6705248734842452375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2e2f810fe6bfce41a1eb15494ec888a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rate: 1
+  resource: 0
 --- !u!54 &-7086757480770644782
 Rigidbody:
   m_ObjectHideFlags: 0
