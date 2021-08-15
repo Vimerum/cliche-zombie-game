@@ -527,7 +527,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 30}
   m_SizeDelta: {x: -200, y: -400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &239959062
@@ -551,9 +551,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "W , A , S , D - Movimenta\xE7\xE3o do jogador\n\nM - Abrir/Fechar Minimapa\n\nShift
-    (Segurar) -  Constru\xE7\xE3o cont\xEDnua de edif\xEDcios\n\nBot\xE3o esquerdo
-    do mouse - Atirar / Selecionar itens no menu / Posicionar edif\xEDcios\n\nBot\xE3o
-    direito do mouse - Abrir menu\n\nScroll do mouse - Zoom da c\xE2mera"
+    (Segurar) -  Constru\xE7\xE3o cont\xEDnua de edif\xEDcios\n\nEscape - Cancela
+    a\xE7\xE3o de posicionamento de edif\xEDcios\n\nBot\xE3o esquerdo do mouse -
+    Atirar / Selecionar itens no menu / Posicionar edif\xEDcios\n\nBot\xE3o direito
+    do mouse - Abrir menu\n\nScroll do mouse - Zoom da c\xE2mera"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -666,7 +667,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 100}
+  m_AnchoredPosition: {x: 0, y: 75}
   m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &251875439
@@ -1803,7 +1804,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50}
+  m_AnchoredPosition: {x: 0, y: -40}
   m_SizeDelta: {x: 20, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1019256840
@@ -2968,7 +2969,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2071678029
 RectTransform:
   m_ObjectHideFlags: 0

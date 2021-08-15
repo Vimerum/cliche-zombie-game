@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpd: 20
   lifeSpan: 1.5
-  damage: 10
+  damage: 15
 --- !u!33 &1260424634221536422
 MeshFilter:
   m_ObjectHideFlags: 0
