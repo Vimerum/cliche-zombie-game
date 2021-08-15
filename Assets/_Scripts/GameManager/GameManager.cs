@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void GameOver () {
+        minimap.SetActive(false);
         gameOverCanvas.SetActive(true);
         Time.timeScale = 0;
     }
