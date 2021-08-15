@@ -79,6 +79,11 @@ public class BuildingManager : MonoBehaviour {
                     break;
                 }
             case BuildingMode.Positioning: {
+                    if (Input.GetButtonDown("Cancel")) {
+                        Destroy(currBuildingBehaviour.gameObject);
+                        mode = BuildingMode.None;
+                        break;
+                    }
                     if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 100, buildingPositionLayers)) {
                         Vector2Int mousePos = new Vector2Int(Mathf.RoundToInt(hit.point.x), Mathf.RoundToInt(hit.point.z));
 
